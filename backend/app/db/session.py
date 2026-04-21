@@ -10,10 +10,13 @@ engine_kwargs = {
 if settings.DATABASE_URL.startswith("sqlite"):
     connect_args = {"check_same_thread": False}
 else:
-    # PostgreSQL
+    # PostgreSQL con connection pooler
     engine_kwargs["pool_pre_ping"] = True
-    engine_kwargs["pool_size"] = 5
-    engine_kwargs["max_overflow"] = 10
+    engine_kwargs["pool_size"] = 3
+    engine_kwargs["max_overflow"] = 5
+    engine_kwargs["pool_recycle"] = 300
+    # Desactivar prepared statements para modo Transaction pooler
+    connect_args = {"options": "-c statement_timeout=30000"}
 
 engine = create_engine(
     settings.DATABASE_URL,
