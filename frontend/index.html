@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Academia - Sistema de Agendamiento</title>
+    <link rel="stylesheet" href="src/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fas fa-car"></i> Agenda Academia
+        </div>
+        <div class="nav-links">
+            <a href="#" onclick="loadPage('dashboard')" class="nav-link active">
+                <i class="fas fa-chart-bar"></i> Dashboard
+            </a>
+            <a href="#" onclick="loadPage('instructors')" class="nav-link">
+                <i class="fas fa-user-tie"></i> Instructores
+            </a>
+            <a href="#" onclick="loadPage('students')" class="nav-link">
+                <i class="fas fa-user-graduate"></i> Alumnos
+            </a>
+            <a href="#" onclick="loadPage('vehicles')" class="nav-link">
+                <i class="fas fa-motorcycle"></i> Vehiculos
+            </a>
+            <a href="#" onclick="loadPage('bookings')" class="nav-link">
+                <i class="fas fa-calendar-check"></i> Reservas
+            </a>
+            <a href="#" onclick="loadPage('availability')" class="nav-link">
+                <i class="fas fa-clock"></i> Disponibilidad
+            </a>
+            <a href="#" onclick="loadPage('import')" class="nav-link">
+                <i class="fas fa-file-import"></i> Importar
+            </a>
+        </div>
+    </nav>
+
+    <main id="app-content">
+        <div class="loading">Cargando...</div>
+    </main>
+
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div id="modal-content" class="modal-content"></div>
+    </div>
+
+    <script src="src/js/config.js"></script>
+    <script src="src/js/api.js"></script>
+    <script src="src/js/import.js"></script>
+    <script src="src/js/app.js"></script>
+</body>
+</html>

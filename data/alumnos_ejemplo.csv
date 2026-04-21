@@ -1,0 +1,11 @@
+full_name,document,phone,email,category,hours_completed,can_morning,can_afternoon,notes
+Juan Perez,1001234567,3101234567,juan@email.com,carro_b1,6,no,si,Trabaja de dia
+Maria Garcia,1009876543,3209876543,maria@email.com,moto,0,si,si,Disponible cualquier horario
+Carlos Lopez,1005551234,3155551234,,carro_c1,10,no,si,Solo noches
+Ana Martinez,1007778888,3187778888,ana@mail.com,moto,8,si,no,Prefiere mananas
+Pedro Ramirez,1003334444,3163334444,,carro_b1,0,si,si,Nuevo ingreso
+Laura Torres,1002225555,3142225555,laura@mail.com,carro_b1,12,no,si,Avanzada
+Diego Herrera,1006669999,3176669999,,moto,4,si,si,
+Sofia Castro,1008881111,3198881111,sofia@mail.com,carro_c1,0,no,si,Solo puede de noche
+Andres Rios,1004447777,3124447777,,carro_b1,2,si,no,
+Valentina Mora,1001112222,3151112222,vale@mail.com,moto,10,si,si,Casi termina
