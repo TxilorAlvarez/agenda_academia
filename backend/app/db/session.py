@@ -3,15 +3,22 @@ from sqlalchemy.orm import sessionmaker
 from app.core.config import settings
 
 connect_args = {}
+engine_kwargs = {
+    "echo": settings.DEBUG,
+}
 
-# SQLite necesita check_same_thread=False
 if settings.DATABASE_URL.startswith("sqlite"):
     connect_args = {"check_same_thread": False}
+else:
+    # PostgreSQL
+    engine_kwargs["pool_pre_ping"] = True
+    engine_kwargs["pool_size"] = 5
+    engine_kwargs["max_overflow"] = 10
 
 engine = create_engine(
     settings.DATABASE_URL,
-    echo=settings.DEBUG,
     connect_args=connect_args,
+    **engine_kwargs,
 )
 
 SessionLocal = sessionmaker(
@@ -22,7 +29,6 @@ SessionLocal = sessionmaker(
 
 
 def get_db():
-    """Dependencia de FastAPI para obtener sesion de DB."""
     db = SessionLocal()
     try:
         yield db

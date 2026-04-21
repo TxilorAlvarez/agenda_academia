@@ -1,24 +1,10 @@
 from sqlalchemy import (
     Column, Integer, String, Date, Time,
-    ForeignKey, Enum as SAEnum, DateTime, UniqueConstraint
+    ForeignKey, DateTime, UniqueConstraint
 )
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 from app.db.base import Base
-import enum
-
-
-class BookingStatus(str, enum.Enum):
-    RESERVADA = "reservada"
-    COMPLETADA = "completada"
-    CANCELADA = "cancelada"
-    NO_ASISTIO = "no_asistio"
-    EN_ESPERA = "en_espera"
-
-
-class BookingType(str, enum.Enum):
-    PRACTICA = "practica"
-    EXAMEN = "examen"
 
 
 class Booking(Base):
@@ -34,21 +20,18 @@ class Booking(Base):
     start_time = Column(Time, nullable=False)
     end_time = Column(Time, nullable=False)
 
-    booking_type = Column(SAEnum(BookingType), default=BookingType.PRACTICA)
-    status = Column(SAEnum(BookingStatus), default=BookingStatus.RESERVADA)
+    booking_type = Column(String(20), default="practica")   # practica, examen
+    status = Column(String(20), default="reservada")        # reservada, completada, cancelada, no_asistio, en_espera
 
-    # Numero de hora (ej: hora 3 de 20 para B1)
     hour_number = Column(Integer, nullable=True)
 
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     notes = Column(String(300), nullable=True)
 
-    # Relaciones
     student = relationship("Student", backref="bookings")
     instructor = relationship("Instructor", backref="bookings")
     vehicle = relationship("Vehicle", backref="bookings")
 
-    # Un instructor no puede tener 2 clases al mismo tiempo
     __table_args__ = (
         UniqueConstraint(
             "instructor_id", "date", "start_time",

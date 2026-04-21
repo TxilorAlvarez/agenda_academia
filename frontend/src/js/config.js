@@ -1,8 +1,8 @@
 var isLocal = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost";
 
 window.APP_CONFIG = {
-    API_BASE_URL: isLocal ? "http://127.0.0.1:8000" : "https://agenda-academia-api.onrender.com",
-    API_V1: isLocal ? "http://127.0.0.1:8000/api/v1" : "https://agenda-academia-api.onrender.com/api/v1",
+    API_BASE_URL: isLocal ? "http://127.0.0.1:8000" : "https://agenda-academia.onrender.com",
+    API_V1: isLocal ? "http://127.0.0.1:8000/api/v1" : "https://agenda-academia.onrender.com/api/v1",
     HOURS_MAP: {
         moto: { practice: 14, exam: 1, total: 15 },
         carro_b1: { practice: 19, exam: 1, total: 20 },
