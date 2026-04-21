@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Academia - Portal del Aprendiz</title>
+    <link rel="stylesheet" href="src/css/alumno.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fas fa-car"></i> AGENDA ACADEMIA
+        </div>
+        <div class="nav-right" id="nav-user" style="display:none">
+            <span id="nav-username"></span>
+            <button class="btn btn-sm btn-outline" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Salir</button>
+        </div>
+    </nav>
+
+    <!-- LOGIN -->
+    <div id="login-section">
+        <div class="login-card">
+            <div class="login-icon"><i class="fas fa-user-graduate"></i></div>
+            <h1>Portal del Aprendiz</h1>
+            <p>Ingresa tu numero de documento para acceder</p>
+            <form onsubmit="loginStudent(event)">
+                <div class="form-group">
+                    <label>Numero de documento</label>
+                    <input type="text" id="login-doc" placeholder="Ej: 1001234567" required autofocus>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-sign-in-alt"></i> Ingresar
+                </button>
+                <div id="login-error" class="alert alert-danger" style="display:none;margin-top:1rem"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- PORTAL DEL ALUMNO -->
+    <div id="student-portal" style="display:none">
+        <main>
+            <!-- Info del alumno -->
+            <div class="welcome-card" id="student-info"></div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('calendar')"><i class="fas fa-calendar-alt"></i> Agendar Clase</button>
+                <button class="tab" onclick="switchTab('my-bookings')"><i class="fas fa-list"></i> Mis Reservas</button>
+            </div>
+
+            <!-- TAB: Calendario -->
+            <div id="tab-calendar" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-calendar-alt" style="color:var(--primary)"></i> Selecciona fecha y horario</h2>
+                        <div class="calendar-nav">
+                            <button class="btn btn-sm btn-outline" onclick="changeWeek(-1)"><i class="fas fa-chevron-left"></i></button>
+                            <span id="week-label"></span>
+                            <button class="btn btn-sm btn-outline" onclick="changeWeek(1)"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="week-grid" id="week-grid"></div>
+                    </div>
+                </div>
+
+                <!-- Slots del dia seleccionado -->
+                <div class="card" id="slots-card" style="display:none">
+                    <div class="card-header">
+                        <h2><i class="fas fa-clock" style="color:var(--primary)"></i> Horarios disponibles - <span id="selected-date-label"></span></h2>
+                    </div>
+                    <div class="card-body">
+                        <div id="slots-container"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: Mis reservas -->
+            <div id="tab-my-bookings" class="tab-content" style="display:none">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-list" style="color:var(--primary)"></i> Mis Reservas</h2>
+                    </div>
+                    <div class="card-body" id="my-bookings-container"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal confirmacion -->
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div id="modal-content" class="modal-content"></div>
+    </div>
+
+    <script src="src/js/config.js"></script>
+    <script src="src/js/api.js"></script>
+    <script src="src/js/alumno.js"></script>
+</body>
+</html>
