@@ -3,7 +3,7 @@ const content = document.getElementById("app-content");
 function setActiveNav(page) {
     document.querySelectorAll(".nav-link").forEach(l => l.classList.remove("active"));
     const links = document.querySelectorAll(".nav-link");
-    const map = { dashboard: 0, instructors: 1, students: 2, vehicles: 3, bookings: 4, availability: 5, import: 6 };
+    const map = { dashboard: 0, instructors: 1, students: 2, vehicles: 3, bookings: 4, availability: 5, import: 6, export: 7 };
     if (links[map[page]]) links[map[page]].classList.add("active");
 }
 
@@ -40,6 +40,7 @@ async function loadPage(page) {
             case "bookings": await renderBookings(); break;
             case "availability": await renderAvailability(); break;
             case "import": await renderImport(); break;
+            case "export": await renderExport(); break;
         }
     } catch (err) {
         content.innerHTML = '<div class="alert alert-danger">Error: ' + err.message + '</div>';

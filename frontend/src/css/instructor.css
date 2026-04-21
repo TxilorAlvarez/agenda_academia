@@ -1,0 +1,71 @@
+.portal-badge {
+    background: var(--primary);
+    color: var(--dark);
+    font-size: 0.6rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+    font-weight: 800;
+    vertical-align: middle;
+}
+
+.schedule-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--border);
+    gap: 1rem;
+    transition: background 0.2s;
+}
+
+.schedule-item:hover { background: rgba(232,160,18,0.03); }
+.schedule-item:last-child { border-bottom: none; }
+
+.schedule-time {
+    min-width: 120px;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--primary-dark);
+}
+
+.schedule-info { flex: 1; }
+.schedule-info .student-name { font-weight: 700; font-size: 0.95rem; }
+.schedule-info .student-detail { font-size: 0.78rem; color: var(--gray); margin-top: 0.2rem; }
+
+.schedule-badge { text-align: right; }
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: var(--gray);
+}
+
+.empty-state i {
+    font-size: 3rem;
+    color: var(--border);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.student-progress-card {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--border);
+    gap: 1rem;
+}
+
+.student-progress-card:last-child { border-bottom: none; }
+
+.student-progress-info { flex: 1; }
+.student-progress-info .sp-name { font-weight: 700; }
+.student-progress-info .sp-detail { font-size: 0.78rem; color: var(--gray); margin-top: 0.2rem; }
+
+.student-progress-bar { width: 150px; }
+
+.day-card .day-classes {
+    font-size: 0.65rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin-top: 0.2rem;
+}

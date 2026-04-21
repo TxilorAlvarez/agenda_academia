@@ -16,13 +16,14 @@ from app.api.v1.routes_bookings import router as bookings_router
 from app.api.v1.routes_availability import router as availability_router
 from app.api.v1.routes_health import router as health_router
 from app.api.v1.routes_import import router as import_router
+from app.api.v1.routes_export import router as export_router
 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title=settings.APP_NAME,
     description="Sistema de agendamiento de practicas de conduccion",
-    version="0.3.0",
+    version="0.4.0",
 )
 
 app.add_middleware(
@@ -40,11 +41,12 @@ app.include_router(vehicles_router, prefix="/api/v1")
 app.include_router(bookings_router, prefix="/api/v1")
 app.include_router(availability_router, prefix="/api/v1")
 app.include_router(import_router, prefix="/api/v1")
+app.include_router(export_router, prefix="/api/v1")
 
 
 @app.get("/health")
 def health():
-    return {"status": "ok", "service": settings.APP_NAME, "version": "0.3.0"}
+    return {"status": "ok", "service": settings.APP_NAME, "version": "0.4.0"}
 
 
 HOURS_CONFIG = {

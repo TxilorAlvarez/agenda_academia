@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Academia - Portal del Instructor</title>
+    <link rel="stylesheet" href="src/css/alumno.css">
+    <link rel="stylesheet" href="src/css/instructor.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fas fa-car"></i> AGENDA ACADEMIA
+            <span class="portal-badge">INSTRUCTOR</span>
+        </div>
+        <div class="nav-right" id="nav-user" style="display:none">
+            <span id="nav-username"></span>
+            <button class="btn btn-sm btn-outline" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Salir</button>
+        </div>
+    </nav>
+
+    <!-- LOGIN -->
+    <div id="login-section">
+        <div class="login-card">
+            <div class="login-icon"><i class="fas fa-user-tie"></i></div>
+            <h1>Portal del Instructor</h1>
+            <p>Ingresa tu numero de documento para acceder</p>
+            <form onsubmit="loginInstructor(event)">
+                <div class="form-group">
+                    <label>Numero de documento</label>
+                    <input type="text" id="login-doc" placeholder="Ej: 8001234567" required autofocus>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-sign-in-alt"></i> Ingresar
+                </button>
+                <div id="login-error" class="alert alert-danger" style="display:none;margin-top:1rem"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- PORTAL -->
+    <div id="instructor-portal" style="display:none">
+        <main>
+            <!-- Info del instructor -->
+            <div class="welcome-card" id="instructor-info"></div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('schedule')"><i class="fas fa-calendar-alt"></i> Mi Agenda</button>
+                <button class="tab" onclick="switchTab('today')"><i class="fas fa-clock"></i> Hoy</button>
+                <button class="tab" onclick="switchTab('students')"><i class="fas fa-user-graduate"></i> Mis Alumnos</button>
+            </div>
+
+            <!-- TAB: Agenda semanal -->
+            <div id="tab-schedule" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-calendar-alt" style="color:var(--primary)"></i> Agenda Semanal</h2>
+                        <div class="calendar-nav">
+                            <button class="btn btn-sm btn-outline" onclick="changeWeek(-1)"><i class="fas fa-chevron-left"></i></button>
+                            <span id="week-label"></span>
+                            <button class="btn btn-sm btn-outline" onclick="changeWeek(1)"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="week-grid" id="week-grid"></div>
+                    </div>
+                </div>
+                <div class="card" id="day-detail-card" style="display:none">
+                    <div class="card-header">
+                        <h2><i class="fas fa-list" style="color:var(--primary)"></i> Clases del <span id="selected-date-label"></span></h2>
+                    </div>
+                    <div class="card-body" id="day-detail-container"></div>
+                </div>
+            </div>
+
+            <!-- TAB: Hoy -->
+            <div id="tab-today" class="tab-content" style="display:none">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-clock" style="color:var(--primary)"></i> Clases de Hoy</h2>
+                    </div>
+                    <div class="card-body" id="today-container"></div>
+                </div>
+            </div>
+
+            <!-- TAB: Mis alumnos -->
+            <div id="tab-students" class="tab-content" style="display:none">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-user-graduate" style="color:var(--primary)"></i> Progreso de Mis Alumnos</h2>
+                    </div>
+                    <div class="card-body" id="my-students-container"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="src/js/config.js"></script>
+    <script src="src/js/api.js"></script>
+    <script src="src/js/instructor.js"></script>
+</body>
+</html>
